@@ -230,8 +230,8 @@ if (isset($_GET['delete_all'])) {
                         <td>
                            <?php echo $fetch_cart['name']; ?>
                         </td>
-                        <td>$
-                           <?php echo $fetch_cart['price']; ?>/-
+                        <td>
+                           <?php echo $fetch_cart['price']; ?> VND
                         </td>
                         <td>
                            <form action="" method="post">
@@ -241,8 +241,8 @@ if (isset($_GET['delete_all'])) {
                               <input type="submit" name="update_cart" value="update" class="option-btn">
                            </form>
                         </td>
-                        <td>$
-                           <?php echo $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?>/-
+                        <td>
+                           <?php echo $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?> VND
                         </td>
                         <td><a href="index.php?remove=<?php echo $fetch_cart['id']; ?>" class="delete-btn"
                               onclick="return confirm('remove item from cart?');">remove</a></td>
@@ -266,7 +266,7 @@ if (isset($_GET['delete_all'])) {
          </table>
             <form method="post" >
          <button name="checkout" class="cart-btn">
-            <a href="index.php?#" class="btn <?php echo ($grand_total > 1) ? '' : 'disabled'; ?>">proceed to checkout</a>
+            <a href="index.php?#" class="btn <?php echo ($grand_total >= 0) ? '' : 'disabled'; ?>">proceed to checkout</a>
          </button>
             </form>
 
