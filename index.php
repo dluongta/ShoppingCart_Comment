@@ -130,7 +130,7 @@ if (isset($_GET['delete_all'])) {
             <a href="login.php" class="btn">login</a>
             <a href="register.php" class="option-btn">register</a>
             <a href="index.php?logout=<?php echo $user_id; ?>"
-               onclick="return confirm('are your sure you want to logout?');" class="delete-btn">logout</a>
+                class="delete-btn">logout</a>
          </div>
 
       </div>
@@ -245,7 +245,7 @@ if (isset($_GET['delete_all'])) {
                            <?php echo $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?> VND
                         </td>
                         <td><a href="index.php?remove=<?php echo $fetch_cart['id']; ?>" class="delete-btn"
-                              onclick="return confirm('remove item from cart?');">remove</a></td>
+                              >remove</a></td>
                      </tr>
                      <?php
                      $grand_total += $sub_total;
@@ -259,8 +259,8 @@ if (isset($_GET['delete_all'])) {
                   <td> 
                      <?php echo $grand_total; ?> VND
                   </td>
-                  <td><a href="index.php?delete_all" onclick="return confirm('delete all from cart?');"
-                        class="delete-btn <?php echo ($grand_total > 1) ? '' : 'disabled'; ?>">delete all</a></td>
+                  <td><a href="index.php?delete_all" 
+                        class="delete-btn <?php echo ($grand_total >= 0) ? '' : 'disabled'; ?>">delete all</a></td>
                </tr>
             </tbody>
          </table>
