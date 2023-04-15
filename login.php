@@ -5,7 +5,7 @@ session_start();
 
 if (isset($_POST['submit'])) {
 
-   $email = mysqli_real_escape_string($conn, $_POST['name']);
+   $name = mysqli_real_escape_string($conn, $_POST['name']);
    $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
 
    $select = mysqli_query($conn, "SELECT * FROM `user_info` WHERE name = '$name' AND password = '$pass'") or die('query failed');
