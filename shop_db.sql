@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2023 at 03:03 PM
+-- Generation Time: Apr 15, 2023 at 03:25 PM
 -- Server version: 10.4.24-MariaDB-log
 -- PHP Version: 7.4.29
 
@@ -48,13 +48,6 @@ CREATE TABLE `comment_db` (
   `message` mediumtext NOT NULL,
   `time` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `comment_db`
---
-
-INSERT INTO `comment_db` (`id`, `name`, `message`, `time`) VALUES
-(13, 'default user', '', '2023-04-15 20:02:19');
 
 -- --------------------------------------------------------
 
