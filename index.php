@@ -269,7 +269,7 @@ if (isset($_GET['delete_all'])) {
          </table>
             <form method="post" >
          <button name="checkout" class="cart-btn">
-            <a href="#" class="btn <?php echo ($grand_total >= 0) ? '' : 'disabled'; ?>">proceed to checkout</a>
+            <div class="btn <?php echo ($grand_total >= 0) ? '' : 'disabled'; ?>">proceed to checkout</div>
          </button>
             </form>
 
