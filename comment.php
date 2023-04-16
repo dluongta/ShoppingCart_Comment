@@ -24,7 +24,7 @@ if (isset($_GET['logout'])) {
     header('location:login.php');
 }
 ;
-if (isset($_POST['post_comment'])) {
+if ($user_id != 1 && isset($_POST['post_comment'])) {
 
     $postMessage = $_POST['message'];
     $select_user = mysqli_query($conn, "SELECT * FROM `user_info` WHERE id = '$user_id'") or die('query failed');

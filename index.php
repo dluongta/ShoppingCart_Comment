@@ -17,6 +17,9 @@ if ($user_id == 1) {
 if ($user_id == 1 && isset($_POST['checkout'])) {
    header('location:login.php');
 }
+if ($user_id != 1 && isset($_POST['checkout'])) {
+   header('location:checkout.php');
+}
 
 
 if (isset($_GET['logout'])) {
@@ -26,7 +29,7 @@ if (isset($_GET['logout'])) {
 }
 ;
 
-if (isset($_POST['add_to_cart'])) {
+if ($user_id != 1 && isset($_POST['add_to_cart'])) {
 
    $product_name = $_POST['product_name'];
    $product_price = $_POST['product_price'];
@@ -45,7 +48,7 @@ if (isset($_POST['add_to_cart'])) {
 }
 ;
 
-if (isset($_POST['update_cart'])) {
+if ($user_id != 1 && isset($_POST['update_cart'])) {
    $update_quantity = $_POST['cart_quantity'];
    $update_id = $_POST['cart_id'];
    mysqli_query($conn, "UPDATE `cart` SET quantity = '$update_quantity' WHERE id = '$update_id'") or die('query failed');
@@ -266,7 +269,7 @@ if (isset($_GET['delete_all'])) {
          </table>
             <form method="post" >
          <button name="checkout" class="cart-btn">
-            <a href="checkout.php" class="btn <?php echo ($grand_total >= 0) ? '' : 'disabled'; ?>">proceed to checkout</a>
+            <a href="#" class="btn <?php echo ($grand_total >= 0) ? '' : 'disabled'; ?>">proceed to checkout</a>
          </button>
             </form>
 
