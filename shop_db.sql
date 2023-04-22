@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2023 at 03:25 PM
+-- Generation Time: Apr 22, 2023 at 11:45 AM
 -- Server version: 10.4.24-MariaDB-log
 -- PHP Version: 7.4.29
 
@@ -31,10 +31,18 @@ CREATE TABLE `cart` (
   `id` int(100) NOT NULL,
   `user_id` int(100) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `price` varchar(100) NOT NULL,
+  `price` int(11) NOT NULL,
   `image` varchar(100) NOT NULL,
   `quantity` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `user_id`, `name`, `price`, `image`, `quantity`) VALUES
+(12, 3, 'Product 1', 0, 'product-1.png', 1),
+(13, 3, 'Product 4', 0, 'product-4.png', 1);
 
 -- --------------------------------------------------------
 
@@ -52,13 +60,38 @@ CREATE TABLE `comment_db` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `order`
+--
+
+CREATE TABLE `order` (
+  `id` int(100) NOT NULL,
+  `user_id` int(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `number` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `method` varchar(100) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `total_products` varchar(255) NOT NULL,
+  `total_price` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `order`
+--
+
+INSERT INTO `order` (`id`, `user_id`, `name`, `number`, `email`, `method`, `address`, `total_products`, `total_price`) VALUES
+(1, 3, 'test', '123456789', 'test@gmail.com', 'cash on delivery', 'Hanoi', '', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `products`
 --
 
 CREATE TABLE `products` (
   `id` int(100) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `price` varchar(100) NOT NULL,
+  `price` int(11) NOT NULL,
   `image` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -67,12 +100,12 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `price`, `image`) VALUES
-(1, 'Product 1', '0', 'product-1.png'),
-(3, 'Product 2', '0', 'product-2.png'),
-(4, 'Product 3', '0', 'product-3.png'),
-(5, 'Product 4', '0', 'product-4.png'),
-(6, 'Product 5', '0', 'product-5.png'),
-(7, 'Product 6', '0', 'product-6.png');
+(1, 'Product 1', 0, 'product-1.png'),
+(3, 'Product 2', 0, 'product-2.png'),
+(4, 'Product 3', 0, 'product-3.png'),
+(5, 'Product 4', 0, 'product-4.png'),
+(6, 'Product 5', 0, 'product-5.png'),
+(7, 'Product 6', 0, 'product-6.png');
 
 -- --------------------------------------------------------
 
@@ -92,7 +125,8 @@ CREATE TABLE `user_info` (
 
 INSERT INTO `user_info` (`id`, `name`, `password`) VALUES
 (1, 'default user', 'e10adc3949ba59abbe56e057f20f883e'),
-(2, 'test1', 'e10adc3949ba59abbe56e057f20f883e');
+(2, 'test1', 'e10adc3949ba59abbe56e057f20f883e'),
+(3, 'test', 'e10adc3949ba59abbe56e057f20f883e');
 
 --
 -- Indexes for dumped tables
@@ -108,6 +142,12 @@ ALTER TABLE `cart`
 -- Indexes for table `comment_db`
 --
 ALTER TABLE `comment_db`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `order`
+--
+ALTER TABLE `order`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -130,13 +170,19 @@ ALTER TABLE `user_info`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `comment_db`
 --
 ALTER TABLE `comment_db`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `order`
+--
+ALTER TABLE `order`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -148,7 +194,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `user_info`
 --
 ALTER TABLE `user_info`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
