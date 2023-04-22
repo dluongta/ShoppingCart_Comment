@@ -49,7 +49,7 @@ if ($user_id != 1 && isset($_POST['order_btn'])) {
          <h3>thank you for shopping!</h3>
          <div class='order-detail'>
             <span>" . $total_product . "</span>
-            <span class='total'> total : $" . $price_total . "/-  </span>
+            <span class='total'> total : " . $price_total . " VND  </span>
          </div>
          <div class='customer-details'>
             <p> your name : <span>" . $name . "</span> </p>
@@ -59,7 +59,7 @@ if ($user_id != 1 && isset($_POST['order_btn'])) {
             <p> your payment mode : <span>" . $method . "</span> </p>
             <p>Pay when product arrives</p>
          </div>
-            <a href='index.php' class='btn'>continue shopping</a>
+            <a href='index.php' class='btn'>Continue Shopping</a>
          </div>
       </div>
       ";
