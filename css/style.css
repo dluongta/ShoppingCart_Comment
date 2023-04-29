@@ -79,8 +79,9 @@
 
    .nav-items-icon {
       position:relative;
-      margin: 0;
+      right: 0px;
       transform: translateY(0%);
+      transform: translateX(-2vh);
     }
    
  } 
