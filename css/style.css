@@ -71,6 +71,23 @@
    color: #eee;
  }
 
+ @media screen and (max-width: 768px) {
+   .nav .nav-links {
+      display: flex;
+      flex-direction: column;
+   }
+
+   .nav-items-icon {
+      position:relative;
+      margin: 0;
+      padding: 5px 10px;
+      transform: translateY(0%);
+    }
+   
+ } 
+   
+ 
+
  
  .message{
     position: sticky;
