@@ -4,19 +4,19 @@ include 'config.php';
 session_start();
 $user_id = $_SESSION['user_id'];
 if (!isset($user_id)) {
-   $_SESSION['user_id'] = 1;
-   header('location:comment.php');
+    $_SESSION['user_id'] = 1;
+    header('location:comment.php');
 }
 
 
 if ($user_id == 1) {
-   $message[] = 'You need logging';
-   ob_end_flush();
+    $message[] = 'You need logging';
+    ob_end_flush();
 }
 
 if ($user_id == 1 && isset($_POST['post_comment'])) {
     header('location:login.php');
- }
+}
 
 if (isset($_GET['logout'])) {
     unset($user_id);
@@ -39,7 +39,7 @@ if ($user_id != 1 && isset($_POST['post_comment'])) {
     if ($conn->query($sql) === TRUE) {
         echo "";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn-> error;
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
 
@@ -63,56 +63,67 @@ if ($user_id != 1 && isset($_POST['post_comment'])) {
 </head>
 
 <body>
-<?php
-    if (isset($message)){
-        if (is_array($message) || is_object($message))
-        {
-         foreach ($message as $onMessage) {
-         echo '<div class="message" onclick="this.remove();">' . $onMessage . '</div>';
-         }
+    <?php
+    if (isset($message)) {
+        if (is_array($message) || is_object($message)) {
+            foreach ($message as $onMessage) {
+                echo '<div class="message" onclick="this.remove();">' . $onMessage . '</div>';
+            }
         }
     }
-   ?>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">Cart System</a>
+    ?>
+    <header className='header'>
+      <div className='container flex'>
+         <div className='nav'>
+            <ul className="nav-links">
+               <li>
+                  <a href='index.php'> Home </a>
+               </li>
 
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="comment.php">Comment</a>
-                </li>
+               <li>
+                  <a href='comment.php'> Comment </a>
+               </li>
+               <div class='nav-items-icon'>
+                  <li>
+                     <?php
+                     $select_user = mysqli_query($conn, "SELECT * FROM `user_info` WHERE id = '$user_id'") or die('query failed');
+                     if (mysqli_num_rows($select_user) > 0) {
+                        $fetch_user = mysqli_fetch_assoc($select_user);
+                     }
+                     ;
+                     ?>
+                     <div class='text'>
+
+                        <p> Username : <span>
+                              <?php echo $fetch_user['name']; ?>
+                           </span> </p>
+                     </div>
+                  </li>
+                  <li>
+                     <a href="login.php">Login</a>
+                  </li>
+
+                  <li>
+                     <a href="register.php">Sign Up</a>
+                  </li>
+                  <li>
+                     <a href="index.php?logout=<?php echo $user_id; ?>">Logout</a>
+                  </li>
+               </div>
 
             </ul>
+         </div>
 
-        </div>
-        </div>
-    </nav>
+         </button>
+
+      </div>
+
+   </header>
+
 
     <div class="container">
 
-        <div class="user-profile">
-
-            <?php
-            $select_user = mysqli_query($conn, "SELECT * FROM `user_info` WHERE id = '$user_id'") or die('query failed');
-            if (mysqli_num_rows($select_user) > 0) {
-                $fetch_user = mysqli_fetch_assoc($select_user);
-            }
-            ;
-            ?>
-            <p> username : <span>
-                    <?php echo $fetch_user['name']; ?>
-                </span> </p>
-            <div class="flex">
-                <a href="login.php" class="btn">login</a>
-                <a href="register.php" class="option-btn">register</a>
-                <a href="index.php?logout=<?php echo $user_id; ?>"
-                    onclick="return confirm('are your sure you want to logout?');" class="delete-btn">logout</a>
-            </div>
-
-        </div>
+        
         <div class="container mt-3">
             <form action="" method="post" class="form">
                 <div class="row mb-3">
@@ -152,7 +163,8 @@ if ($user_id != 1 && isset($_POST['post_comment'])) {
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h5 class="d-flex align-items-center justify-content-center"><i class="fa fa-user"></i> LUEN2003</h5>
+                    <h5 class="d-flex align-items-center justify-content-center"><i class="fa fa-user"></i> LUEN2003
+                    </h5>
                     <div class="row ">
                         <div class="col-6 d-flex align-items-center justify-content-center">
                             <ul class="list-unstyled">

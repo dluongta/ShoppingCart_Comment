@@ -87,56 +87,63 @@ if (isset($_GET['delete_all'])) {
 <body>
 
    <?php
-   if (isset($message)){
-      if (is_array($message) || is_object($message))
-      {
-       foreach ($message as $onMessage) {
-       echo '<div class="message" onclick="this.remove();">' . $onMessage . '</div>';
-       }
+   if (isset($message)) {
+      if (is_array($message) || is_object($message)) {
+         foreach ($message as $onMessage) {
+            echo '<div class="message" onclick="this.remove();">' . $onMessage . '</div>';
+         }
       }
    }
    ?>
-   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-      <div class="container-fluid">
-         <a class="navbar-brand" href="index.php">Cart System</a>
+   <header className='header'>
+      <div className='container flex'>
+         <div className='nav'>
+            <ul className="nav-links">
+               <li>
+                  <a href='index.php'> Home </a>
+               </li>
 
-         <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-               <a class="nav-link" href="index.php">Home</a>
-            </li>
-            <li class="nav-item">
-               <a class="nav-link" href="comment.php">Comment</a>
-            </li>
+               <li>
+                  <a href='comment.php'> Comment </a>
+               </li>
+               <div class='nav-items-icon'>
+                  <li>
+                     <?php
+                     $select_user = mysqli_query($conn, "SELECT * FROM `user_info` WHERE id = '$user_id'") or die('query failed');
+                     if (mysqli_num_rows($select_user) > 0) {
+                        $fetch_user = mysqli_fetch_assoc($select_user);
+                     }
+                     ;
+                     ?>
+                     <div class='text'>
 
-         </ul>
+                        <p> Username : <span>
+                              <?php echo $fetch_user['name']; ?>
+                           </span> </p>
+                     </div>
+                  </li>
+                  <li>
+                     <a href="login.php">Login</a>
+                  </li>
 
-      </div>
-      </div>
-   </nav>
+                  <li>
+                     <a href="register.php">Sign Up</a>
+                  </li>
+                  <li>
+                     <a href="index.php?logout=<?php echo $user_id; ?>">Logout</a>
+                  </li>
+               </div>
 
-   <div class="container">
-
-      <div class="user-profile">
-
-         <?php
-         $select_user = mysqli_query($conn, "SELECT * FROM `user_info` WHERE id = '$user_id'") or die('query failed');
-         if (mysqli_num_rows($select_user) > 0) {
-            $fetch_user = mysqli_fetch_assoc($select_user);
-         }
-         ;
-         ?>
-
-         <p> username : <span>
-               <?php echo $fetch_user['name']; ?>
-            </span> </p>
-         <div class="flex">
-            <a href="login.php" class="btn">login</a>
-            <a href="register.php" class="option-btn">register</a>
-            <a href="index.php?logout=<?php echo $user_id; ?>"
-                class="delete-btn">logout</a>
+            </ul>
          </div>
 
+         </button>
+
       </div>
+
+   </header>
+
+   <div class="container">
       <div class="container">
          <form>
             <div class="row">
@@ -247,8 +254,7 @@ if (isset($_GET['delete_all'])) {
                         <td>
                            <?php echo $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?> VND
                         </td>
-                        <td><a href="index.php?remove=<?php echo $fetch_cart['id']; ?>" class="delete-btn"
-                              >remove</a></td>
+                        <td><a href="index.php?remove=<?php echo $fetch_cart['id']; ?>" class="delete-btn">remove</a></td>
                      </tr>
                      <?php
                      $grand_total += $sub_total;
@@ -259,19 +265,19 @@ if (isset($_GET['delete_all'])) {
                ?>
                <tr class="table-bottom">
                   <td colspan="4">Total :</td>
-                  <td> 
+                  <td>
                      <?php echo $grand_total; ?> VND
                   </td>
-                  <td><a href="index.php?delete_all" 
+                  <td><a href="index.php?delete_all"
                         class="delete-btn <?php echo ($grand_total >= 0) ? '' : 'disabled'; ?>">delete all</a></td>
                </tr>
             </tbody>
          </table>
-            <form method="post" >
-         <button name="checkout" class="cart-btn">
-            <div class="btn <?php echo ($grand_total >= 0) ? '' : 'disabled'; ?>">proceed to checkout</div>
-         </button>
-            </form>
+         <form method="post">
+            <button name="checkout" class="cart-btn">
+               <div class="btn <?php echo ($grand_total >= 0) ? '' : 'disabled'; ?>">proceed to checkout</div>
+            </button>
+         </form>
 
       </div>
 

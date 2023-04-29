@@ -20,31 +20,57 @@
  body{
     background-color: var(--light-bg);
  }
-
-  /* Style the header */
-.header {
-   background-color: #f1f1f1;
-   padding: 20px;
-   text-align: center;
-   justify-content: center;
+ .container {
+   max-width: 80%;
+   margin: auto;
+ }
+ .flex {
    display: flex;
+   justify-content: space-between;
  }
- 
- /* Style the top navigation bar */
- .topnav {
-   overflow: hidden;
-   background-color: #333;
+ ul {
+   list-style: none;
  }
- 
- /* Style the topnav links */
- .topnav a {
-   float: left;
-   display: block;
-   color: #f2f2f2;
-   text-align: center;
-   padding: 14px 16px;
+ a {
    text-decoration: none;
+   color: black;
  }
+
+ header {
+   padding: 20px 0;
+   background-color: #333;
+   
+ }
+ header ul {
+   display: inline-block;
+ }
+ header ul li {
+   display: inline-block;
+   margin-left: 30px;
+ }
+ header ul li a {
+   font-weight: 500;
+   transition: 0.5s;
+   color: #eee;
+ }
+ header ul li a:hover {
+   color:rgb(12, 152, 239);
+   font-weight: 500;
+ }
+ .nav-links {
+   position: relative;
+ }
+ .nav-items-icon {
+   position: absolute;
+   margin: 0;
+   right: 30px;
+   transform: translateY(-50%);
+   padding: 5px 10px;
+ }
+ .text {
+   color: #eee;
+ }
+
  
  .message{
     position: sticky;
@@ -143,43 +169,7 @@
     max-width: 1200px;
     padding-bottom: 70px;
  }
- 
- .container .heading{
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 40px;
-    text-transform: uppercase;
-    color:var(--black);
- }
- 
- .container .user-profile{
-    padding:20px;
-    text-align: center;
-    border:var(--border);
-    background-color: var(--white);
-    box-shadow: var(--box-shadow);
-    margin:20px auto;
-    max-width: 500px;
- }
- 
- .container .user-profile p{
-    margin-bottom: 10px;
-    font-size: 25px;
-    color:var(--black);
- }
- 
- .container .user-profile p span{
-    color:var(--red);
- }
- 
- .container .user-profile .flex{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap:10px;
-    align-items: flex-end;
- }
- 
+
  .container .products .box-container{
     display: flex;
     flex-wrap: wrap;
@@ -453,6 +443,8 @@
    padding:0 .5rem;
    text-transform: none;
 }
+
+
 
 
   

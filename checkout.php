@@ -97,6 +97,54 @@ if ($user_id != 1 && isset($_POST['order_btn'])) {
       }
    }
    ?>
+   <header className='header'>
+      <div className='container flex'>
+         <div className='nav'>
+            <ul className="nav-links">
+               <li>
+                  <a href='index.php'> Home </a>
+               </li>
+
+               <li>
+                  <a href='comment.php'> Comment </a>
+               </li>
+               <div class='nav-items-icon'>
+                  <li>
+                     <?php
+                     $select_user = mysqli_query($conn, "SELECT * FROM `user_info` WHERE id = '$user_id'") or die('query failed');
+                     if (mysqli_num_rows($select_user) > 0) {
+                        $fetch_user = mysqli_fetch_assoc($select_user);
+                     }
+                     ;
+                     ?>
+                     <div class='text'>
+
+                        <p> Username : <span>
+                              <?php echo $fetch_user['name']; ?>
+                           </span> </p>
+                     </div>
+                  </li>
+                  <li>
+                     <a href="login.php">Login</a>
+                  </li>
+
+                  <li>
+                     <a href="register.php">Sign Up</a>
+                  </li>
+                  <li>
+                     <a href="index.php?logout=<?php echo $user_id; ?>">Logout</a>
+                  </li>
+               </div>
+
+            </ul>
+         </div>
+
+         </button>
+
+      </div>
+
+   </header>
+
    <div class="container">
       <div class="user-profile">
 
