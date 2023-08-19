@@ -296,6 +296,10 @@
     user-select: none;
  }
  
+ .shopping-cart .heading {
+   color: #333;
+ }
+ 
  
  @media (max-width:1200px){
     .container .shopping-cart{

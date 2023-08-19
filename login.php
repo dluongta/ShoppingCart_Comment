@@ -9,11 +9,15 @@ if (isset($_POST['submit'])) {
    $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
 
    $select = mysqli_query($conn, "SELECT * FROM `user_info` WHERE name = '$name' AND password = '$pass'") or die('query failed');
-
+   
    if (mysqli_num_rows($select) > 0) {
       $row = mysqli_fetch_assoc($select);
       $_SESSION['user_id'] = $row['id'];
-      header('location:index.php');
+      if ($row['is_admin'] == 1) {
+         header('location:admin_page.php');
+      } else {
+         header('location:index.php');
+      }
    } else {
       $message[] = 'incorrect password or email!';
    }

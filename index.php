@@ -217,7 +217,7 @@ if (isset($_GET['delete_all'])) {
 
       <div class="shopping-cart">
 
-         <h1 class="heading">shopping cart</h1>
+         <h1 class="heading">Shopping Cart</h1>
 
          <table>
             <thead>
