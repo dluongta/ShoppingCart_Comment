@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 19, 2023 at 11:27 AM
--- Server version: 10.4.24-MariaDB-log
--- PHP Version: 7.4.29
+-- Generation Time: Mar 13, 2024 at 09:38 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,7 +34,7 @@ CREATE TABLE `cart` (
   `price` int(11) NOT NULL,
   `image` varchar(100) NOT NULL,
   `quantity` int(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `cart`
@@ -42,7 +42,9 @@ CREATE TABLE `cart` (
 
 INSERT INTO `cart` (`id`, `user_id`, `name`, `price`, `image`, `quantity`) VALUES
 (12, 3, 'Product 1', 0, 'product-1.png', 1),
-(13, 3, 'Product 4', 0, 'product-4.png', 1);
+(15, 2, 'Product 1', 0, 'product-1.png', 1),
+(16, 2, 'Product 8', 100, 'box.png', 1),
+(17, 3, 'Product 8', 100, 'box.png', 3);
 
 -- --------------------------------------------------------
 
@@ -55,7 +57,7 @@ CREATE TABLE `comment_db` (
   `name` varchar(255) NOT NULL,
   `message` mediumtext NOT NULL,
   `time` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -72,15 +74,18 @@ CREATE TABLE `order` (
   `method` varchar(100) NOT NULL,
   `address` varchar(100) NOT NULL,
   `total_products` varchar(255) NOT NULL,
-  `total_price` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `total_price` int(11) NOT NULL,
+  `time_order` timestamp NOT NULL DEFAULT current_timestamp(),
+  `delivered` tinyint(1) NOT NULL DEFAULT 0,
+  `paid` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `order`
 --
 
-INSERT INTO `order` (`id`, `user_id`, `name`, `number`, `email`, `method`, `address`, `total_products`, `total_price`) VALUES
-(1, 3, 'test', '123456789', 'test@gmail.com', 'cash on delivery', 'Hanoi', '', 0);
+INSERT INTO `order` (`id`, `user_id`, `name`, `number`, `email`, `method`, `address`, `total_products`, `total_price`, `time_order`, `delivered`, `paid`) VALUES
+(5, 3, 'Jane', '123456789', 'jane@gmail.com', 'cash on delivery', 'Hanoi', 'Product 1 (1) , Product 8 (3) ', 300, '2024-03-13 08:24:35', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -93,7 +98,7 @@ CREATE TABLE `products` (
   `name` varchar(100) NOT NULL,
   `price` int(11) NOT NULL,
   `image` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `products`
@@ -121,7 +126,7 @@ CREATE TABLE `user_info` (
   `name` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `is_admin` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user_info`
@@ -174,7 +179,7 @@ ALTER TABLE `user_info`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `comment_db`
@@ -186,7 +191,7 @@ ALTER TABLE `comment_db`
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `products`
