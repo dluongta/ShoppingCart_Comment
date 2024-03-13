@@ -162,3 +162,24 @@ html{
    }
 
 }
+
+h3 {
+   text-transform: uppercase;
+   color:var(--black);
+   margin-bottom: 1rem;
+   text-align: center;
+   font-size: 2.5rem;
+}
+
+.text {
+   text-transform: uppercase;
+   color:var(--black);
+   margin-bottom: 1rem;
+   text-align: center;
+   font-size: 1.5rem;
+}
+
+#order_form {
+   width: 50%;
+   height: 50%;
+}

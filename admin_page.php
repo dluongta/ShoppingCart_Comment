@@ -42,7 +42,13 @@ if(isset($_POST['add_product'])){
 
 if(isset($_GET['delete'])){
    $id = $_GET['delete'];
-   mysqli_query($conn, "DELETE FROM products WHERE id = $id");
+   mysqli_query($conn, "DELETE FROM `products` WHERE id = $id");
+   header('location:admin_page.php');
+};
+
+if(isset($_GET['deleteOrder'])){
+   $id = $_GET['deleteOrder'];
+   mysqli_query($conn, "DELETE FROM `order` WHERE id = $id");
    header('location:admin_page.php');
 };
 
@@ -111,6 +117,43 @@ if(isset($message)){
             <td>
                <a href="admin_update.php?edit=<?php echo $row['id']; ?>" class="btn"> <i class="fas fa-edit"></i> edit </a>
                <a href="admin_page.php?delete=<?php echo $row['id']; ?>" class="btn"> <i class="fas fa-trash"></i> delete </a>
+            </td>
+         </tr>
+      <?php } ?>
+      </table>
+   </div>
+
+   <h3>Manage Order</h3>
+   <?php
+
+   $select_ = mysqli_query($conn, "SELECT * FROM `order`");
+   
+   ?>
+
+   <div class="product-display">
+      <table class="product-display-table">
+         <thead>
+         <tr>
+            <th>name</th>
+            <th>total product</th>
+            <th>price</th>
+            <th>time ordered</th>
+            <th>delivered</th>
+            <th>paid</th>
+            <th>action</th>
+         </tr>
+         </thead>
+         <?php while($row = mysqli_fetch_assoc($select_)){ ?>
+         <tr>
+            <td><?php echo $row['name']; ?></td>
+            <td><?php echo $row['total_products']; ?>  </td>
+            <td><?php echo $row['total_price']; ?> VND </td>
+            <td><?php echo $row['time_order']; ?></td>
+            <td><?php if ($row['delivered'] == 0) { echo '❌';} else {echo '✅';} ?> </td>
+            <td><?php if ($row['paid'] == 0) { echo '❌';} else {echo '✅';} ?> </td>
+            <td>
+               <a href="admin_update_order.php?edit=<?php echo $row['id']; ?>" class="btn"> <i class="fas fa-edit"></i> edit </a>
+               <a href="admin_page.php?deleteOrder=<?php echo $row['id']; ?>" class="btn"> <i class="fas fa-trash"></i> delete </a>
             </td>
          </tr>
       <?php } ?>
